@@ -5,9 +5,6 @@
 
 :-chr_constraint v/2, v/3, v/4, quant/3, quant/2, '~>'/2.
 :- op(700, xfx, user:(~>)).
-% bill(g), hillary(h), appointed(g,h,f)
-% v(bill, g), v(convinced, g,h,f), v(everyone, h).
-
 
 v(X, G)                       <=> noun(X,Y)    | G ~> Y.
 v(X, G, H, F), G ~> A, H ~> B <=> vp(X, A^B^V) | F ~> V.
@@ -48,3 +45,12 @@ quant(a, X^Y^a(X,Y)).
 quant(some, X^Y^some(X,Y)).
 quant(every, X^Y^every(X,Y)).
 quant1(everyone, Y^every(person,Y)).
+
+% ----- Example queries
+% ?- v(bill, g), v(loved, g, h, f), v(hillary, h).
+% ?- v(bill, g), v(convinced, g,h,f), v(everyone, h).
+% ?- v(bill, g), v(loves, g, h, f), v(hillary, h), v(obviously, f).
+% ?- v(woman, r1), v(a, r1, h), v(loves, g, h, f), v(every, r, g), v(man, r).
+% ?- v(every, r, g), v(man, r), v(loves, g, h, f), v(a, r1, h), v(woman, r1).
+
+
