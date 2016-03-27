@@ -80,11 +80,11 @@ f~>every(man,_G19860^a(woman,_G19878^loves(_G19860,_G19878)))
 
 ##References
 
-[1] Wikipedia page, Glue semantics. https://en.wikipedia.org/wiki/Glue_semantics.
+[1] [Wikipedia page, Glue semantics.](https://en.wikipedia.org/wiki/Glue_semantics)
 
-[2] CHR https://dtai.cs.kuleuven.be/CHR/
+[2] [CHR](https://dtai.cs.kuleuven.be/CHR/)
 
-[3] Saraswat "LFG qua constraint programming", http://cognet.mit.edu/book/semantics-and-syntax-lexical-functional-grammar
+[3] [Saraswat "LFG qua constraint programming"](http://cognet.mit.edu/book/semantics-and-syntax-lexical-functional-grammar)
 
-[4] Jagadeesan, Nadathur, Saraswat "Testing concurrent systems: An interpretation of intuitionistic logic", FSTTCS 2005. 
-http://saraswat.org/lambdarcc.pdf
+[4] [Jagadeesan, Nadathur, Saraswat "Testing concurrent systems: An interpretation of intuitionistic logic", FSTTCS 2005]( 
+http://saraswat.org/lambdarcc.pdf)
