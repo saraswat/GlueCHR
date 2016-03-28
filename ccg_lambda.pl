@@ -9,9 +9,11 @@
 % and is left associative.
 % Choose ^ for lambda binder, since it is tighter than * and left assoc.
 
-v(I,J,L,S), v(J,K,Z\L1,T) <=> \+ (\+ L=L1) | L=L1,apply(T,S,U), v(I,K,Z,U).
-v(I,J,Z/R,S), v(J,K,R1,T) <=> \+ (\+ R=R1) | R=R1,apply(S,T,U), v(I,K,Z,U).
+v(I,J,L,S), v(J,K,Z\L,T) <=> apply(T,S,U), v(I,K,Z,U).
+v(I,J,Z/R,S), v(J,K,R,T) <=> apply(S,T,U), v(I,K,Z,U).
 
+  % hack to work around CHR bug. Ensures or rule fires only on right.
+v(I,J,Z/R,S), v(J,K,R1,T) <=> var(R) | R=R1, apply(S,T,U), v(I,K,Z,U). 
 
 s(I,S,M), v(I,J,S1,M1), e(J) <=> S=S1, M=M1.
 
