@@ -1,4 +1,4 @@
-%:-module(ccg,[e/3]).
+:-module(ccg_vocab,[e/3]).
 				% entries in the lexicon
 :- op(400, xfy, user:(\)).
 e(refused, (s\np)/(s\np), P^X^E^and([refuse*E, a0*X*E, exists(E1^and([P*X*E1,a1*E1*E]))])).
@@ -26,3 +26,5 @@ np(violets).
 
 adj(red).
 adj(blue).
+adj(grey).
+adj(white).

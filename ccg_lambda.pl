@@ -1,9 +1,10 @@
-%:- module(ccg, [query/3,w/3,apply/3,normalize/2]).
+:- module(ccg, [query/3,w/3,apply/3,normalize/2,e/3]).
 :- use_module(library(chr)).
-
+:-reexport([ccg_vocab]).
 :-chr_constraint v/4, s/3, e/1, w/3.
 
 :- op(400, xfy, user:(\)).
+
 query(U,S,M) :- s(L,S,M), run(U,L,R), e(R).
 run([],L,L).
 run([[A|As]|X],L,R):- !,query([A|As],Type,Mean), v(L,M,Type,Mean), run(X, M, R).
