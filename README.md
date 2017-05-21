@@ -1,5 +1,5 @@
 # GlueCHR
-#A quick and dirty implementation of Glue in Constraint Handling Rules (CHR).
+# A quick and dirty implementation of Glue in Constraint Handling Rules (CHR).
 
 Glue offers a simple, flexible conceptual framework for compositionally assembling meanings of natural language utterances, given an identification of appropriate syntactic roles in the utterance. It was originally developed in the context of LFG, but it is applicable to other settings as well, including CCG. It offers a clean formulation of semantic assembly while making relatively minimal requirements on syntactic theory. See [1] for more details.
 
@@ -26,7 +26,7 @@ CHR is a simple implementation of a subset of flat LCC [2]. One can write out ru
 
 The advantage of this implementation is that CHR is reasonably robust and mature, and is available integrated in many Prolog implementations that are in production use. Therefore this implementation of Glue semantics can be used directly. 
 
-##EXAMPLES
+## EXAMPLES
  
 The key insight in glue semantics is that one can separate out syntax from meaning assembly. The lexical entries come equipped with formulas in glue that specify how meanings are to be assembled, as a function of meanings associated with relevant "roles". 
 
@@ -78,7 +78,7 @@ By varying the order the other reading is obtained.
 f~>every(man,_G19860^a(woman,_G19878^loves(_G19860,_G19878)))
 ```
 
-##References
+## References
 
 [1] [Wikipedia page, Glue semantics.](https://en.wikipedia.org/wiki/Glue_semantics)
 
