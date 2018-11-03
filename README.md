@@ -18,8 +18,7 @@ CHR is a simple implementation of a subset of flat LCC [2]. One can write out ru
   ```
    (I') forall x. h ~> x ox (forall H, S. H ~> S(x) -o H ~> every(person, S))
  ```
- with the requirement that S be a non-vacuous generalization in x, i.e. `S(x)` must have at least one occurrence of `x`, and must not be `x`.
- This ensures that the resource `h ~> x` must be consumed in the proof of `H ~> S(x)`. Note that (I') implies (I) but is not implied by it.
+ with the requirement that S be a non-vacuous generalization in x, i.e. `S(x)` must have at least one occurrence of `x`, and must not be `x`. This ensures that the resource `h ~> x` must be consumed in the proof of `H ~> S(x)`. Note that (I') implies (I) but is not implied by it.
 
   3. CHR is committed choice. This introduces indeterminism in the execution process. The order in which atoms are added to the store (the order of atoms in the formula) can affect the outcome. On a single run only one of the possible meanings (assuming there is at least one) will be generated. It is possible, in principle to generate all possible meanings by reordering the atoms in the formula.
 
