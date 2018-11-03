@@ -3,13 +3,13 @@
 
 Glue offers a simple, flexible conceptual framework for compositionally assembling meanings of natural language utterances, given an identification of appropriate syntactic roles in the utterance. It was originally developed in the context of LFG, but it is applicable to other settings as well, including CCG. It offers a clean formulation of semantic assembly while making relatively minimal requirements on syntactic theory. See [1] for more details.
 
-The chief computational insight in Glue Semantics was the idea that one could assemble the meaning of an utterance from meanings of constituent phrases compositionally by using (forward chaining in) linear logic as the "glue" putting the pieces together. Linear logic permits formulas to be treated as resources, so they can be consumed during a derivation. This is crucial in accounting for the resource-conscious properties of language (whereby sentences such as "loves Hillary" are considered erroneous because they are missing a critical component, and "Bill loves Hillary Hillary" are considered erroneous because they have excess material). 
+The chief computational insight in Glue Semantics was the idea that one could assemble the meaning of an utterance from meanings of constituent phrases compositionally by using (forward chaining in) linear logic as the "glue" putting the pieces together. Linear logic permits formulas to be treated as resources, so they can be consumed during a derivation. This is crucial in accounting for the resource-conscious properties of language (whereby sentences such as `loves Hillary` are considered erroneous because they are missing a critical component, and `Bill loves Hillary Hillary` are considered erroneous because they have excess material). 
 
-Glue can be thought of as using a restricted form of linear concurrent constraint (LCC) programming [3]. What is interesting is that a deep version is needed. To represent natural language quantifiers (using the generalized quantifier approach), glue uses nested computations. Specifically, a quantifier such as 'everyone' is represented as
+Glue can be thought of as using a restricted form of linear concurrent constraint (LCC) programming [3]. What is interesting is that a deep version is needed. To represent natural language quantifiers (using the generalized quantifier approach), glue uses nested computations. Specifically, a quantifier such as `everyone` is represented as
  ```
    (I)   forall H, S. (forall x. h ~> x -o H ~> S(x)) -o H ~> every(person, S)
 ```
-Operationally, an arbitrary meaning (x) for `h` is postulated (via `h ~> x`), and from this the meaning as calculated at some (non-deterministic) scope H. From this meaning the functional dependence on `X` is extracted; `S` represents this meaning. If all this is possible then the meaning `every(person, S)` is asserted at the scope H. Properties of this form of nested forward chaining computation were developed (in the context of intuitionistic logic) in [4].
+Operationally, an arbitrary meaning (x) for `h` is postulated (via `h ~> x`), and from this the meaning as calculated at some (non-deterministic) scope `H`. From this meaning the functional dependence on `X` is extracted; `S` represents this meaning. If all this is possible then the meaning `every(person, S)` is asserted at the scope `H`. Properties of this form of nested forward chaining computation were developed (in the context of intuitionistic logic) in [4].
 
 CHR is a simple implementation of a subset of flat LCC [2]. One can write out rules for meaning assembly directly in it, subject to these restrictions:
 
@@ -19,8 +19,8 @@ CHR is a simple implementation of a subset of flat LCC [2]. One can write out ru
   ```
    (I') forall x. h ~> x ox (forall H, S. H ~> S(x) -o H ~> every(person, S))
  ```
- with the requirement that S be a non-vacuous generalization in x, i.e. S(x) must have at least one occurrence of x, and must not be x.
- This ensures that the resource h ~> x must be consumed in the proof of H ~> S(x). Note that (I') implies (I) but is not implied by it.
+ with the requirement that S be a non-vacuous generalization in x, i.e. `S(x)` must have at least one occurrence of `x`, and must not be `x`.
+ This ensures that the resource `h ~> x` must be consumed in the proof of `H ~> S(x)`. Note that (I') implies (I) but is not implied by it.
 
 (c) CHR is committed choice. This introduces indeterminism in the execution process. The order in which atoms are added to the store (the order of atoms in the formula) can affect the outcome. On a single run only one of the possible meanings (assuming there is at least one) will be generated. It is possible, in principle to generate all possible meanings by reordering the atoms in the formula.
 
