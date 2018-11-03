@@ -12,17 +12,16 @@ Glue can be thought of as using a restricted form of linear concurrent constrain
 Operationally, an arbitrary meaning (x) for `h` is postulated (via `h ~> x`), and from this the meaning as calculated at some (non-deterministic) scope `H`. From this meaning the functional dependence on `X` is extracted; `S` represents this meaning. If all this is possible then the meaning `every(person, S)` is asserted at the scope `H`. Properties of this form of nested forward chaining computation were developed (in the context of intuitionistic logic) in [4].
 
 CHR is a simple implementation of a subset of flat LCC [2]. One can write out rules for meaning assembly directly in it, subject to these restrictions:
+  1.  CHR does not have lambda-unification built in. However, we need only a restricted form of lambda-unification, one in which equations of the form `Y=S(X)` are to be solved, where `X` is a variable, `Y` is a term, and `S` is the abstraction to be discovered. Further, we are only interested in those cases where `Y` contains at least one occurrence of `X`, but is not `X`(the abstraction `S` is not vacuous). This is easy to implement programmatically. (See `lambda/3`.)
 
-(a) CHR does not have lambda-unification built in. However, we need only a restricted form of lambda-unification, one in which equations of the form `Y=S(X)` are to be solved, where `X` is a variable, `Y` is a term, and `S` is the abstraction to be discovered. Further, we are only interested in those cases where `Y` contains at least one occurrence of `X`, but is not `X`(the abstraction `S` is not vacuous). This is easy to implement programmatically. (See `lambda/3`.)
-
-(b) CHR is flat. Therefore an alternate version of representation of nested quantifiers has to be used:
+  2. CHR is flat. Therefore an alternate version of representation of nested quantifiers has to be used:
   ```
    (I') forall x. h ~> x ox (forall H, S. H ~> S(x) -o H ~> every(person, S))
  ```
  with the requirement that S be a non-vacuous generalization in x, i.e. `S(x)` must have at least one occurrence of `x`, and must not be `x`.
  This ensures that the resource `h ~> x` must be consumed in the proof of `H ~> S(x)`. Note that (I') implies (I) but is not implied by it.
 
-(c) CHR is committed choice. This introduces indeterminism in the execution process. The order in which atoms are added to the store (the order of atoms in the formula) can affect the outcome. On a single run only one of the possible meanings (assuming there is at least one) will be generated. It is possible, in principle to generate all possible meanings by reordering the atoms in the formula.
+  3. CHR is committed choice. This introduces indeterminism in the execution process. The order in which atoms are added to the store (the order of atoms in the formula) can affect the outcome. On a single run only one of the possible meanings (assuming there is at least one) will be generated. It is possible, in principle to generate all possible meanings by reordering the atoms in the formula.
 
 The advantage of this implementation is that CHR is reasonably robust and mature, and is available integrated in many Prolog implementations that are in production use. Therefore this implementation of Glue semantics can be used directly. 
 
